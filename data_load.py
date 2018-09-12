@@ -23,11 +23,11 @@ def load_vocab():
 
 def text_normalize(text):
     text = ''.join(char for char in unicodedata.normalize('NFD', text)
-                           if unicodedata.category(char) != 'Mn') # Strip accents
+                   if unicodedata.category(char) != 'Mn')  # Strip accents
 
     text = text.lower()
-    text = re.sub("[^{}]".format(hp.vocab), " ", text)
-    text = re.sub("[ ]+", " ", text)
+    text = re.sub("[^{}]".format(hp.vocab), " ", text)  # replace any oov(out-of-vision) char with space.
+    text = re.sub("[ ]+", " ", text)  # replace continuous spaces with only one space
     return text
 
 def load_data(mode="train"):
